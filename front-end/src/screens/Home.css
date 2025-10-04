@@ -1,0 +1,66 @@
+.home {
+  text-align: center;
+  padding: 20px;
+  color: #fff;
+  background: radial-gradient(circle at center, #1b2735, #090a0f);
+  min-height: 100vh;
+}
+
+.home h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.home p {
+  margin-bottom: 20px;
+  color: #aaa;
+}
+
+.grid-setores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card-setor {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.card-setor:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.emoji {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Responsivo para celular */
+@media (max-width: 768px) {
+  .home h1 {
+    font-size: 1.8rem;
+  }
+
+  .grid-setores {
+    grid-template-columns: 1fr;
+  }
+}
+/* Seu código atual em Home.css: */
+.home {
+  text-align: center;
+  padding: 20px;
+  color: #fff;
+  background: radial-gradient(circle at center, #1b2735, #090a0f);
+  min-height: 100vh; /* <-- Isso é bom */
+}

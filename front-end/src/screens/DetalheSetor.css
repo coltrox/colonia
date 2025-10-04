@@ -1,0 +1,111 @@
+/* src/screens/DetalheSetor.css */
+
+/* Contêiner principal da tela */
+.setor-detalhe {
+  /* Garante que o conteúdo não fique muito largo no desktop */
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Estilo base para cada painel (section) */
+section {
+  background-color: #1a1a2e; /* Fundo escuro para os painéis */
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.painel-alerta {
+  border: 3px solid #646cff; /* Borda azul padrão */
+}
+
+/* Estilo para quando há um alerta ativo (Perigo) */
+.alerta-ativo {
+  border-color: #ff4d4d; /* Borda vermelha para perigo */
+  background-color: #3b1f1f; /* Fundo mais escuro/avermelhado */
+  animation: pulse-border 1.5s infinite alternate; /* Efeito sutil de pulsação */
+}
+
+.alerta-urgente {
+  color: #ff4d4d;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.status-ok {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+/* Grid para as informações de controle */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.info-card {
+  background-color: #2c2c4a;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.info-card h3 {
+  font-size: 0.9em;
+  color: #aaa;
+  margin-top: 0;
+}
+
+.info-card .valor {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #646cff;
+}
+
+/* Botões */
+.botao-controle, .botao-sugestao {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #646cff;
+  border: none;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.botao-sugestao {
+  background-color: #4CAF50;
+}
+
+.botao-controle:hover {
+    background-color: #535bf2;
+}
+
+.botao-sugestao:hover {
+    background-color: #449d48;
+}
+
+/* Animação para o Alerta */
+@keyframes pulse-border {
+  from {
+    box-shadow: 0 0 5px #ff4d4d, 0 0 10px #ff4d4d;
+  }
+  to {
+    box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff4d4d;
+  }
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
