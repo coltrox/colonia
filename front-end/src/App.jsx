@@ -3,7 +3,7 @@ import Observatorio from "./screens/Observatorio";
 import Enfermaria from "./screens/Enfermaria";
 import Plantacao from "./screens/Plantacao";
 import Dormitorio from "./screens/Dormitorio";
-import Home from "./screens/Home"
+import Home from "./screens/Home";
 import "./App.css";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
     <Router>
       <div className="app">
         <nav>
-          <ul>
+          <ul className="nav-links">
             <li><Link to="/">Central</Link></li>
             <li><Link to="/observatorio">🛰️ Observatório</Link></li>
             <li><Link to="/enfermaria">🏥 Enfermaria</Link></li>
@@ -20,13 +20,15 @@ function App() {
           </ul>
         </nav>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/observatorio" element={<Observatorio />} />
-          <Route path="/enfermaria" element={<Enfermaria />} />
-          <Route path="/plantacao" element={<Plantacao />} />
-          <Route path="/dormitorio" element={<Dormitorio />} />
-        </Routes>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/observatorio" element={<Observatorio />} />
+            <Route path="/enfermaria" element={<Enfermaria />} />
+            <Route path="/plantacao" element={<Plantacao />} />
+            <Route path="/dormitorio" element={<Dormitorio />} />
+          </Routes>
+        </main>
       </div>
     </Router>
   );

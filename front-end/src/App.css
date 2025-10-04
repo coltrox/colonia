@@ -1,8 +1,5 @@
 .app {
   font-family: Arial, sans-serif;
-  background: #0f172a;
-  color: white;
-  min-height: 100vh;
   padding: 20px;
 }
 
@@ -14,15 +11,15 @@ nav ul {
 }
 
 nav a {
-  color: #e94560;
   text-decoration: none;
+  color: #333;
   font-weight: bold;
 }
 
 nav a:hover {
-  text-decoration: underline;
+  color: #0077ff;
 }
 
 .screen {
-  margin-top: 30px;
+  margin-top: 20px;
 }
