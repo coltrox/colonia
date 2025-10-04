@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "start": "node src/servidor.js",
+  "dev": "nodemon src/servidor.js",
+  "deploy": "git add . && git commit -m \"🚀 Deploy automático\" && git push origin main"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -19,5 +21,8 @@
     "pg": "^8.16.3",
     "sequelize": "^6.37.7",
     "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
