@@ -55,9 +55,9 @@ PORT=3000
 
 # Credenciais do Banco de Dados (PostgreSQL/Supabase)
 DB_USER=postgres
-DB_PASSWORD=sua_senha_segura_aqui
+DB_PASSWORD=vamopranasa
 DB_NAME=postgres
-DB_HOST=seu_host_de_banco_de_dados_aqui
+DB_HOST=db.wttlxcunyuwcjikawnkc.supabase.co
 DB_PORT=5432
 
 # Chave para JWT (funcionalidade futura)
