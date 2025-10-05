@@ -1,0 +1,126 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  color: #333;
+}
+
+.dashboard-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #dddfe2;
+}
+
+.dashboard-header h1 {
+  color: #1c1e21;
+  margin: 0;
+  font-size: 1.8em;
+}
+
+.back-button {
+  background-color: #e4e6eb;
+  color: #050505;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background-color: #d8dbdf;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #4b4f56;
+  border-bottom: 1px solid #dddfe2;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 12px;
+  border: 1px solid #dddfe2;
+  border-radius: 6px;
+  font-size: 16px;
+  grid-column: span 1;
+}
+
+/* Faz os dois primeiros inputs ocuparem a linha toda */
+input[name="nome"],
+input[name="descricao"] {
+    grid-column: 1 / -1;
+}
+
+input:focus {
+  outline: none;
+  border-color: #1877f2;
+}
+
+form button {
+  grid-column: 1 / -1; /* O botão ocupa a largura toda */
+  background-color: #1877f2;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+form button:hover {
+  background-color: #166fe5;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 15px;
+  border-bottom: 1px solid #dddfe2;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li strong {
+  font-size: 1.1em;
+  color: #1c1e21;
+}
+
+li p {
+  margin: 5px 0 0;
+  color: #606770;
+}

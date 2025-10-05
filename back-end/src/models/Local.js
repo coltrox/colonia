@@ -1,30 +1,34 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/database.js';
 
-const Local = sequelize.define('Local', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-    allowNull: false,
-  },
-  nome: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    comment: 'Ex: Geladeira Principal, Freezer Estoque',
-  },
-  descricao: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  temperaturaAtual: {
-    type: DataTypes.FLOAT,
-    allowNull: true,
-    comment: 'Última temperatura registrada para este local',
-  },
-}, {
-  tableName: 'locais',
-  timestamps: true,
-});
+export default (sequelize) => {
+    const Local = sequelize.define('Local', {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
+        nome: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        descricao: {
+            type: DataTypes.STRING,
+        },
+        // NOVOS CAMPOS PARA A SEGURANÇA DOS COLONOS
+        temperaturaMinima: {
+            type: DataTypes.FLOAT,
+            allowNull: false,
+            defaultValue: 18.0, // Ex: Temp. mínima segura para habitação
+        },
+        temperaturaMaxima: {
+            type: DataTypes.FLOAT,
+            allowNull: false,
+            defaultValue: 24.0, // Ex: Temp. máxima segura para habitação
+        }
+    }, {
+        timestamps: true,
+        tableName: 'locais'
+    });
 
-export default Local;
+    return Local;
+};
