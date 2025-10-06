@@ -19,7 +19,7 @@
 
 ## 🚀 Live Demo & Source Code
 
-  - **Check out the live version:** **[Live Project Demo Link](https://coltrox.github.io/colonia**
+  - **Check out the live version:** **[Live Project Demo Link](https://coltrox.github.io/colonia)**
   - **Explore the code:** **[GitHub Repository Link](https://www.google.com/search?q=https://github.com/coltrox/colonia)**
 
 -----
