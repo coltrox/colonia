@@ -1,27 +1,27 @@
-\<div align="center"\>
-\<img src="[https://raw.githubusercontent.com/user-attachments/assets/94170685-6493-410d-88b1-096d4ed9a5a3.png](https://www.google.com/search?q=https://raw.githubusercontent.com/user-attachments/assets/94170685-6493-410d-88b1-096d4ed9a5a3.png)" alt="Project Logo" width="150"/\>
-\<h1\>\<b\>Mars Colony Command Center\</b\>\</h1\>
-\<p\>A futuristic sci-fi HUD dashboard with a dedicated Node.js back-end and a dynamic React front-end, designed to simulate the monitoring of a remote space colony.\</p\>
+<div align="center">
+  <img src="https://raw.githubusercontent.com/user-attachments/assets/94170685-6493-410d-88b1-096d4ed9a5a3.png" alt="Project Logo" width="150"/>
+  <h1><b>Mars Colony Command Center</b></h1>
+  <p>A futuristic sci-fi HUD dashboard with a dedicated Node.js back-end and a dynamic React front-end, designed to simulate the monitoring of a remote space colony.</p>
 
-\<div\>
-\<img src="[https://img.shields.io/badge/Node.js-339933?style=for-the-badge\&logo=nodedotjs\&logoColor=white](https://www.google.com/search?q=https://img.shields.io/badge/Node.js-339933%3Fstyle%3Dfor-the-badge%26logo%3Dnodedotjs%26logoColor%3Dwhite)" alt="Node.js Badge"/\>
-\<img src="[https://img.shields.io/badge/React-20232A?style=for-the-badge\&logo=react\&logoColor=61DAFB](https://www.google.com/search?q=https://img.shields.io/badge/React-20232A%3Fstyle%3Dfor-the-badge%26logo%3Dreact%26logoColor%3D61DAFB)" alt="React Badge"/\>
-\<img src="[https://img.shields.io/badge/Vite-646CFF?style=for-the-badge\&logo=vite\&logoColor=white](https://www.google.com/search?q=https://img.shields.io/badge/Vite-646CFF%3Fstyle%3Dfor-the-badge%26logo%3Dvite%26logoColor%3Dwhite)" alt="Vite Badge"/\>
-\<img src="[https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge\&logo=supabase\&logoColor=white](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)" alt="Supabase Badge"/\>
-\</div\>
-<br>
-\<a href="\#-about-the-project"\>About\</a\> •
-\<a href="\#-key-features"\>Features\</a\> •
-\<a href="\#-tech-stack"\>Tech Stack\</a\> •
-\<a href="\#-project-structure"\>Structure\</a\> •
-\<a href="\#-live-demo"\>Live Demo\</a\>
+  <div>
+    <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js Badge"/>
+    <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Badge"/>
+    <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite Badge"/>
+    <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase Badge"/>
+  </div>
+  <br>
+  <a href="#-about-the-project">About</a> •
+  <a href="#-key-features">Features</a> •
+  <a href="#-tech-stack">Tech Stack</a> •
+  <a href="#-project-structure">Structure</a> •
+  <a href="#-live-demo">Live Demo</a>
 
-\</div\>
+</div>
 
-\<p align="center"\>
-\<em\>A high-quality GIF of the project in action.\</em\><br>
-\<img src="http://googleusercontent.com/image_generation_content/0" alt="Project Demo GIF"/\>
-\</p\>
+<p align="center">
+  <em>A high-quality GIF of the project in action.</em><br>
+  <img src="http://googleusercontent.com/image_generation_content/0" alt="Project Demo GIF"/>
+</p> 
 
 ## 🚀 Live Demo & Source Code
 
