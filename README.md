@@ -13,13 +13,13 @@
   <a href="#-key-features">Features</a> •
   <a href="#-tech-stack">Tech Stack</a> •
   <a href="#-project-structure">Structure</a> •
-  <a href="https://coltrox.github.io/colonia/home">Live Demo</a>
+  <a href="https://coltrox.github.io/colonia">Live Demo</a>
 
 </div>
 
 ## 🚀 Live Demo & Source Code
 
-  - **Check out the live version:** **[Live Project Demo Link](https://coltrox.github.io/colonia/home)**
+  - **Check out the live version:** **[Live Project Demo Link](https://coltrox.github.io/colonia**
   - **Explore the code:** **[GitHub Repository Link](https://www.google.com/search?q=https://github.com/coltrox/colonia)**
 
 -----
