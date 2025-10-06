@@ -1,5 +1,5 @@
 <div align="center">
-  <h1><b>Mars Colony Command Center</b></h1>
+  <h1><b>Aurora Colony Command Center</b></h1>
   <p>A futuristic sci-fi HUD dashboard with a dedicated Node.js back-end and a dynamic React front-end, designed to simulate the monitoring of a remote space colony.</p>
 
   <div>
