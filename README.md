@@ -18,20 +18,19 @@
 </div>
 
 <p align="center">
-  <em>A high-quality GIF of the project in action.</em><br>
   <img src="http://googleusercontent.com/image_generation_content/0" alt="Project Demo GIF"/>
 </p> 
 
 ## 🚀 Live Demo & Source Code
 
   - **Check out the live version:** **[Live Project Demo Link](https://your-live-demo-link.com)**
-  - **Explore the code:** **[GitHub Repository Link](https://www.google.com/search?q=https://github.com/your-username/your-repo-name)**
+  - **Explore the code:** **[GitHub Repository Link](https://www.google.com/search?q=https://github.com/coltrox/colonia)**
 
 -----
 
 ## 📖 About The Project
 
-The **Mars Colony Command Center** is an immersive web application designed to simulate the monitoring interface of a human colony on Mars. The inspiration comes from sci-fi user interfaces seen in movies and games, focusing on a clean, retro, and functional aesthetic.
+The **Aurora Colony Command Center** is an immersive web application designed to simulate the monitoring interface of a human colony on Mars. The inspiration comes from sci-fi user interfaces seen in movies and games, focusing on a clean, retro, and functional aesthetic.
 
 This project demonstrates a full-stack application with a modern, decoupled architecture. The **React + Vite** front-end provides a fast, responsive user experience, while the custom **Node.js** back-end serves data and handles logic, using **Supabase** as a powerful database service.
 
@@ -92,7 +91,6 @@ This project is organized as a monorepo, containing the two main packages (`back
   - [ ] **WebSocket Integration**: Use WebSockets for true real-time communication instead of HTTP polling.
   - [ ] **Interactive Map**: Turn the colony plan into an interactive SVG component that fetches data per module.
   - [ ] **Containerization**: Add Dockerfiles for both front-end and back-end for easier deployment.
-  - [ ] **API Documentation**: Create a formal API documentation using a tool like Swagger or Postman.
 
 -----
 
@@ -102,6 +100,5 @@ Distributed under the MIT License. See the `LICENSE` file for more information.
 
 -----
 
-\<div align="center"\>
 Made with by Pedro Coltro | Miguel Carriscar | Letícia Zanata | Jefferson
-\</div\>
+
