@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/user-attachments/assets/94170685-6493-410d-88b1-096d4ed9a5a3.png" alt="Project Logo" width="150"/>
   <h1><b>Mars Colony Command Center</b></h1>
   <p>A futuristic sci-fi HUD dashboard with a dedicated Node.js back-end and a dynamic React front-end, designed to simulate the monitoring of a remote space colony.</p>
 
