@@ -17,10 +17,6 @@
 
 </div>
 
-<p align="center">
-  <img src="http://googleusercontent.com/image_generation_content/0" alt="Project Demo GIF"/>
-</p> 
-
 ## 🚀 Live Demo & Source Code
 
   - **Check out the live version:** **[Live Project Demo Link](https://your-live-demo-link.com)**
