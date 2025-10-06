@@ -1,0 +1,46 @@
+@import url('./GlobalHUD.css');
+
+/* Estilos Específicos da Plantation */
+.plantation-chart-title {
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.plantation-status {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--status-ok);
+}
+
+.main-action-button { 
+  /* Exemplo de botão personalizado para esta tela */
+  font-family: var(--font-heading);
+  background: transparent;
+  border: 2px solid var(--status-ok); /* Cor alterada para verde (OK) para o tema */
+  color: var(--status-ok);
+  padding: 12px 25px;
+  margin-top: 25px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(100, 255, 218, 0.5), inset 0 0 10px rgba(100, 255, 218, 0.3);
+}
+.main-action-button:hover {
+  background-color: var(--status-ok);
+  color: #010409;
+  box-shadow: 0 0 30px var(--status-ok);
+}
+
+/* Tamanho base do contêiner de visualização específico para esta tela */
+.main-viz-container {
+  width: 350px;
+  height: 350px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+  border: 1px dashed var(--status-ok);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

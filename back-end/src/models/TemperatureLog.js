@@ -1,28 +1,27 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
-const LogTemperatura = sequelize.define('LogTemperatura', {
+const TemperatureLog = sequelize.define('TemperatureLog', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
     allowNull: false,
   },
-  temperatura: {
+  temperature: {
     type: DataTypes.FLOAT,
     allowNull: false,
-    comment: 'Temperatura registrada no momento do log',
+    comment: 'Recorded temperature at the moment of log',
   },
   timestamp: {
     type: DataTypes.DATE,
     allowNull: false,
     defaultValue: DataTypes.NOW,
-    comment: 'Data e hora em que o registro foi feito',
+    comment: 'Date and time when the record was made',
   },
 }, {
-  tableName: 'logs_temperatura',
+  tableName: 'temperature_logs',
   timestamps: false,
 });
 
-export default LogTemperatura;
-
+export default TemperatureLog;

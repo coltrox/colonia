@@ -1,0 +1,80 @@
+/* Usando variáveis globais definidas em index.css ou App.css */
+.monitor-container {
+    padding: 40px;
+    width: 100%;
+    height: 100%;
+}
+
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.module-card {
+    background-color: var(--background-card, #0a192f);
+    border: 1px solid var(--border-color, #13305a);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 25px rgba(0, 221, 255, 0.1);
+}
+
+.module-name {
+    font-family: var(--font-heading, 'Orbitron');
+    color: var(--primary-glow, #00ddff);
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--border-color, #13305a);
+    padding-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.module-type {
+    font-family: var(--font-body, 'Roboto Mono');
+    color: var(--text-secondary, #8892b0);
+    text-transform: capitalize;
+    font-size: 0.9rem;
+}
+
+.status-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-body, 'Roboto Mono');
+    font-size: 0.95rem;
+    color: var(--text-secondary, #8892b0);
+}
+
+.status-value {
+    font-weight: bold;
+    color: var(--text-primary, #e6f1ff);
+}
+
+/* Cores de Status */
+.status--ok { color: var(--status-ok, #64ffda); }
+.status--warn { color: var(--status-warn, #ffc700); }
+.status--crit { color: var(--status-crit, #ff7b72); }
+
+.error-state {
+    color: var(--error-color, #ff7b72);
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.2rem;
+}

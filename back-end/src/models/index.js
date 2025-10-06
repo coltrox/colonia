@@ -1,30 +1,35 @@
 import sequelize from '../config/database.js';
-import Local from './Local.js';
-import Mantimento from './Mantimentos.js';
-import LogTemperatura from './LogTemperatura.js';
+
+import Location from './Location.js';
+import StorageLocation from './StorageLocation.js';
+import Supply from './Supply.js';
+import TemperatureLog from './TemperatureLog.js';
+import Module from './Module.js';
+import ModuleLog from './ModuleLog.js';
 
 const db = {};
 
 db.sequelize = sequelize;
-db.Local = Local;
-db.Mantimento = Mantimento;
-db.LogTemperatura = LogTemperatura;
+db.Location = Location;
+db.StorageLocation = StorageLocation;
+db.Supply = Supply;
+db.TemperatureLog = TemperatureLog;
+db.Module = Module;
+db.ModuleLog = ModuleLog;
 
-// --- DEFINIÇÃO DAS ASSOCIAÇÕES ---
-
-// Associação: Um Local pode ter muitos Mantimentos (relação N:M)
-// Uma tabela intermediária `local_mantimentos` será criada automaticamente.
-db.Local.belongsToMany(db.Mantimento, { through: 'local_mantimentos' });
-db.Mantimento.belongsToMany(db.Local, { through: 'local_mantimentos' });
-
-// Associação: Um Local pode ter muitos Logs de Temperatura (relação 1:N)
-db.Local.hasMany(db.LogTemperatura, {
-  foreignKey: 'localId',
-  as: 'logs',
+db.StorageLocation.hasMany(db.Supply, { foreignKey: 'locationId', as: 'supplies' });
+db.Supply.belongsTo(db.StorageLocation, { foreignKey: 'locationId', as: 'location' });
+db.Location.hasMany(db.TemperatureLog, { foreignKey: 'locationId', as: 'logs' });
+db.TemperatureLog.belongsTo(db.Location, { foreignKey: 'locationId', as: 'location' });
+db.Module.hasMany(db.ModuleLog, { 
+    foreignKey: 'moduleName', 
+    sourceKey: 'name', 
+    as: 'history' 
 });
-db.LogTemperatura.belongsTo(db.Local, {
-  foreignKey: 'localId',
-  as: 'local',
+db.ModuleLog.belongsTo(db.Module, { 
+    foreignKey: 'moduleName', 
+    targetKey: 'name', 
+    as: 'module' 
 });
 
 export default db;

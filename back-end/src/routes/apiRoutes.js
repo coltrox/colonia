@@ -1,113 +1,89 @@
 import { Router } from 'express';
 import db from '../models/index.js';
-// Importa as novas funções do scheduler para gerir alertas em memória
 import { getAlerts, resolveAlert } from '../scheduler/temperatureScheduler.js';
+
+// 1. IMPORTE O MODULE CONTROLLER
+import * as moduleController from '../controllers/ModuleController.js';
 
 const router = Router();
 
-// --- SIMULADOR DE LOGS DO SISTEMA (para o painel principal) ---
-let systemLogs = [
-    '> Conexão com a Terra estabelecida.',
-    '> Suporte de vida estável: O₂ 21%, N₂ 78%',
-    '> Reatores de fusão online: 100%',
-    '> Iniciando sistemas da colônia A-01...',
-];
-const possibleLogs = [
-    'Nave de carga 7 atracou na doca 3.',
-    'Anomalia magnética detectada no setor 9.',
-    'Recicladores de O₂ operando a 99.8% de eficiência.',
-    'Painéis solares reorientados. Carga: 97%.',
-    'Alerta: micro-meteoroide se aproximando. Escudos ativados.'
-];
+// --- Rotas de System Logs e Alerts ---
+let systemLogs = ['> Connection with Earth established.'];
+const possibleLogs = ['Cargo ship 7 has docked.', 'Magnetic anomaly detected.', 'O₂ recyclers at 99.8% efficiency.'];
 setInterval(() => {
     const newMessage = possibleLogs[Math.floor(Math.random() * possibleLogs.length)];
     systemLogs.unshift(`> ${newMessage}`);
     if (systemLogs.length > 6) systemLogs.pop();
-}, 5000);
+}, 7000);
 
-router.get('/system-logs', (req, res) => {
-    res.status(200).json(systemLogs);
-});
-
-
-// --- ROTAS DE ALERTAS DE AMBIENTE ---
-
-// Rota para buscar os alertas ATIVOS que estão em memória
-router.get('/alerts', (req, res) => {
-    const activeAlerts = getAlerts();
-    res.status(200).json(activeAlerts);
-});
-
-// Rota para "resolver" (remover) um alerta da lista em memória
+router.get('/system-logs', (req, res) => { res.status(200).json(systemLogs); });
+router.get('/alerts', (req, res) => { res.status(200).json(getAlerts()); });
 router.post('/alerts/:id/resolve', (req, res) => {
-    const alertId = req.params.id;
-    const wasResolved = resolveAlert(alertId);
-    if (wasResolved) {
-        res.status(200).json({ message: `Alerta para o local ${alertId} foi resolvido.` });
-    } else {
-        res.status(404).json({ error: `Nenhum alerta ativo encontrado para o local ${alertId}.` });
-    }
+    const wasResolved = resolveAlert(req.params.id);
+    if (wasResolved) res.status(200).json({ message: `Alert resolved.` });
+    else res.status(404).json({ error: `No active alert found.` });
 });
 
+// 2. ADICIONE A ROTA PARA OS MÓDULOS
+router.get('/modules', moduleController.getAllModuleStatuses);
 
-// --- ROTAS PARA LOCAIS ---
 
-// ATUALIZADO: A rota de criação agora aceita a faixa de temperatura para o local
-router.post('/locais', async (req, res) => {
-  try {
-    const { nome, descricao, temperaturaMinima, temperaturaMaxima } = req.body;
-    if (!nome) {
-      return res.status(400).json({ error: 'O nome do local é obrigatório.' });
+// --- ROTAS PARA LOCATIONS (ANTIGAS, se você ainda as usa) ---
+router.get('/locations', async (req, res) => {
+    try {
+        const locations = await db.Location.findAll();
+        res.status(200).json(locations);
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching locations: ' + error.message });
     }
-    const novoLocal = await db.Local.create({ nome, descricao, temperaturaMinima, temperaturaMaxima });
-    res.status(201).json(novoLocal);
+});
+router.post('/locations', async (req, res) => {
+  try {
+    const newLocation = await db.Location.create(req.body);
+    res.status(201).json(newLocation);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao criar local: ' + error.message });
+    res.status(500).json({ error: 'Error creating location: ' + error.message });
   }
 });
 
-// Rota para buscar todos os locais
-router.get('/locais', async (req, res) => {
+// --- ROUTES FOR SUPPLIES ---
+router.get('/supplies', async (req, res) => {
     try {
-        const locais = await db.Local.findAll();
-        res.status(200).json(locais);
-    } catch (error) {
-        res.status(500).json({ error: 'Erro ao buscar locais: ' + error.message });
-    }
-});
-
-// Rota para ver todos os dados de um local (incluindo logs de temperatura)
-router.get('/locais/:localId/details', async (req, res) => {
-    try {
-        const local = await db.Local.findByPk(req.params.localId, {
-            include: [{ model: db.LogTemperatura, as: 'logs' }]
+        const supplies = await db.Supply.findAll({ 
+            order: [['createdAt', 'DESC']]
         });
-        if (!local) {
-            return res.status(404).json({ error: 'Local não encontrado.' });
-        }
-        res.status(200).json(local);
+        res.status(200).json(supplies);
     } catch (error) {
-        res.status(500).json({ error: 'Erro ao buscar detalhes do local: ' + error.message });
+        console.error("Error fetching supplies:", error);
+        res.status(500).json({ error: 'Error fetching supplies.' });
     }
 });
 
-// Rota para adicionar um log de temperatura a um local manualmente (para testes)
-router.post('/locais/:localId/logs', async (req, res) => {
+router.post('/supplies', async (req, res) => {
     try {
-        const { temperatura } = req.body;
-        const local = await db.Local.findByPk(req.params.localId);
-        if (!local) {
-            return res.status(404).json({ error: 'Local não encontrado.' });
+        const { name, description, minTemperature, maxTemperature, locationId } = req.body;
+        
+        const storageLocation = await db.StorageLocation.findByPk(locationId);
+        if (!storageLocation) {
+            return res.status(404).json({ error: 'The specified storage location does not exist.' });
         }
-        if (temperatura === undefined) {
-            return res.status(400).json({ error: 'A temperatura é obrigatória.' });
+
+        if (!name || !locationId) {
+            return res.status(400).json({ error: 'Supply name and locationId are required.' });
         }
-        const novoLog = await db.LogTemperatura.create({ temperatura, localId: local.id });
-        res.status(201).json(novoLog);
+
+        const newSupply = await db.Supply.create({
+            name,
+            description,
+            minTemperature,
+            maxTemperature,
+            locationId
+        });
+        res.status(201).json(newSupply);
     } catch (error) {
-        res.status(500).json({ error: 'Erro ao registrar log: ' + error.message });
+        console.error("Error creating supply:", error);
+        res.status(500).json({ error: 'Error creating supply.' });
     }
 });
-
 
 export default router;

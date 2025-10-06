@@ -3,67 +3,64 @@ import { useNavigate } from "react-router-dom";
 import "./LoginScreen.css";
 
 export default function LoginScreen() {
-  const [login, setLogin] = useState("");
-  const [senha, setSenha] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [stayLogged, setStayLogged] = useState(false);
   const navigate = useNavigate();
 
-  // ✅ Redireciona automaticamente se já estiver logado
   useEffect(() => {
-    const logado = localStorage.getItem("logado");
-    if (logado === "true") {
+    // Verifica se já existe um login (seja em localStorage ou sessionStorage)
+    const loggedIn = localStorage.getItem("loggedIn") === "true" || sessionStorage.getItem("loggedIn") === "true";
+    if (loggedIn) {
       navigate("/home");
     }
   }, [navigate]);
 
   const handleLogin = () => {
-    if (login === "admin" && senha === "1234") {
+    if (username === "admin" && password === "1234") {
       if (stayLogged) {
-        localStorage.setItem("logado", "true");
-        localStorage.setItem("lastRoute", "/home");
+        // Se "manter logado" estiver marcado, usa localStorage (persistente)
+        localStorage.setItem("loggedIn", "true");
       } else {
-        localStorage.removeItem("logado");
-        localStorage.removeItem("lastRoute");
+        // Se NÃO estiver marcado, usa sessionStorage (só para a sessão atual)
+        sessionStorage.setItem("loggedIn", "true");
       }
       navigate("/home");
     } else {
-      alert("Login ou senha incorretos!");
+      alert("Incorrect username or password!");
     }
   };
 
   return (
     <div className="login-container">
       <div className="login-card">
-        <h1 className="login-title">🛠️ Sistema Colônia</h1>
-        <p className="login-subtitle">Acesso restrito a engenheiros autorizados</p>
+        <h1 className="login-title">🛠️ Colony System</h1>
+        <p className="login-subtitle">Restricted access for authorized engineers</p>
 
         <input
           type="text"
-          placeholder="Usuário"
-          value={login}
-          onChange={(e) => setLogin(e.target.value)}
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           className="login-input"
         />
-
         <input
           type="password"
-          placeholder="Senha"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           className="login-input"
         />
-
         <div className="remember-container">
-          <label className="remember-text">Manter conectado</label>
+          <label className="remember-text">Stay logged in</label>
           <input
             type="checkbox"
             checked={stayLogged}
             onChange={() => setStayLogged(!stayLogged)}
           />
         </div>
-
         <button className="login-button" onClick={handleLogin}>
-          Entrar
+          Login
         </button>
       </div>
     </div>

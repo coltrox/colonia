@@ -9,13 +9,18 @@
   height: 100vh;
   border-right: 1px solid #13305a;
   font-family: 'Orbitron', sans-serif;
+  flex-shrink: 0;
 }
 
 .sidebar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   text-align: center;
   font-size: 1.2em;
   border-bottom: 1px solid #13305a;
+  position: relative;
 }
 
 .sidebar ul {
@@ -54,4 +59,35 @@
 .sidebar-footer a {
   color: #ff7b72;
   text-decoration: none;
+}
+
+.sidebar-close-button {
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #8892b0;
+    cursor: pointer;
+}
+
+@media (max-width: 960px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    border-right: 2px solid #13305a;
+  }
+
+  .sidebar--open {
+    transform: translateX(0);
+  }
+
+  .sidebar-close-button {
+      display: block;
+  }
 }

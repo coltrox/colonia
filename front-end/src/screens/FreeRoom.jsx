@@ -1,81 +1,33 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Home.css';
-// 1. Importa a imagem da planta
-import ColonyPlanImage from '../assets/colony_plan.png';
+import './FreeRoom.css';
 
 const API_URL = 'http://localhost:3000/api';
 
-const Home = () => {
+const FreeRoom = () => {
   const navigate = useNavigate();
   const canvasRef = useRef(null);
-  const globeRef = useRef(null);
   const [systemTime, setSystemTime] = useState('');
-  const [systemLogs, setSystemLogs] = useState(['> Waiting for connection...']);
+  const [roomLogs, setRoomLogs] = useState(['> Recreation console initialized.']);
   const [alerts, setAlerts] = useState([]);
   const [showAlarms, setShowAlarms] = useState(false);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let animationFrameId;
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const stars = Array.from({ length: 200 }, () => ({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            size: Math.random() * 2 + 0.5,
-            speed: Math.random() * 0.5 + 0.1,
-        }));
-
-        const animateStars = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#FFFFFF';
-
-            stars.forEach(star => {
-                star.y += star.speed;
-                if (star.y > canvas.height) {
-                    star.y = 0;
-                    star.x = Math.random() * canvas.width;
-                }
-                ctx.fillRect(star.x, star.y, star.size, star.size);
-            });
-            animationFrameId = requestAnimationFrame(animateStars);
-        };
-
-        animateStars();
-
-        const handleResize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            cancelAnimationFrame(animationFrameId);
-            window.removeEventListener('resize', handleResize);
-        };
-    }
   }, []);
-
 
   useEffect(() => {
     const fetchSystemData = async () => {
       try {
         const [logsResponse, alertsResponse] = await Promise.all([
-          axios.get(`${API_URL}/system-logs`),
+          axios.get(`${API_URL}/freeroom-logs`),
           axios.get(`${API_URL}/alerts`)
         ]);
-        setSystemLogs(logsResponse.data);
-        setAlerts(alertsResponse.data);
+        setRoomLogs(logsResponse.data);
+        setAlerts(alertsResponse.data.filter(a => a.location === 'FreeRoom'));
       } catch (error) {
         console.error("Error fetching data:", error);
-        setSystemLogs(prev => ['> CONNECTION ERROR', ...prev.slice(0, 5)]);
+        setRoomLogs(prev => ['> ERROR: SOCIAL FEED OFFLINE', ...prev.slice(0, 5)]);
       }
     };
 
@@ -83,11 +35,8 @@ const Home = () => {
     const dataInterval = setInterval(fetchSystemData, 7000);
     const timeInterval = setInterval(() => {
       const now = new Date();
-      const options = { year: 'numeric', month: '2-digit', day: '2-digit', 
-                        hour: '2-digit', minute: '2-digit', second: '2-digit', 
-                        hour12: false, timeZone: 'UTC' };
-      const formattedTime = now.toLocaleString('en-US', options) + ' Sol Time';
-      setSystemTime(formattedTime);
+      const stardate = now.toISOString().replace('T', ' ').split('.')[0] + ' Z';
+      setSystemTime(stardate);
     }, 1000);
 
     return () => {
@@ -106,13 +55,13 @@ const Home = () => {
   };
 
   return (
-    <div className="home-container">
+    <div className="screen-container">
       <canvas ref={canvasRef} className="starfield-canvas"></canvas>
       <div className="scanlines"></div>
 
       <div className="hud-grid">
         <header className="hud-header">
-          <h1>COMMAND CENTER</h1>
+          <h1>FREE ROOM - RECREATION MODULE</h1>
           <div className="header-right">
             <p className="system-time">{systemTime}</p>
             <div className="notifications-bell" onClick={() => setShowAlarms(!showAlarms)}>
@@ -122,17 +71,17 @@ const Home = () => {
               {alerts.length > 0 && <span className="alarm-badge">{alerts.length}</span>}
               {showAlarms && (
                 <div className="alarms-dropdown">
-                  <h3>Environment Alerts</h3>
+                  <h3>Rec Room Alerts</h3>
                   {alerts.length > 0 ? alerts.map(alert => (
                     <div key={alert.id} className="alarm-item">
                       <strong>{alert.locationName}</strong>
-                      <p>Temp: {alert.currentTemp}°C</p>
-                      <small>Safe Range: {alert.minTemp}°C - {alert.maxTemp}°C</small>
+                      <p>Activity: {alert.activity}</p>
+                      <small>Level: {alert.riskLevel}</small>
                       <button className="resolve-button" onClick={() => handleResolveAlert(alert.id)}>
                         Dismiss
                       </button>
                     </div>
-                  )) : <p className="no-alerts">No active alerts.</p>}
+                  )) : <p className="no-alerts">All quiet. Crew is relaxed.</p>}
                 </div>
               )}
             </div>
@@ -141,28 +90,31 @@ const Home = () => {
 
         <aside className="hud-left-panel">
           <div className="panel">
-            <h3>STATUS</h3>
-            <p>LIFE SUPPORT: <span className="status-ok">STABLE</span></p>
-            <p>POWER: <span className="status-ok">ONLINE</span></p>
+            <h3>MEDIA LIBRARY</h3>
+            <p>Movies: <span>89% storage free</span></p>
+            <p>Games: <span>23 active titles</span></p>
+            <p>Bandwidth: <span className="status-ok">NOMINAL</span></p>
           </div>
           <div className="panel">
-            <h3>DATA</h3>
-            <p>POPULATION: <span>20</span></p>
-            <p>LOCATION: <span>Mars</span></p>
+            <h3>SOCIAL FEED</h3>
+            <p>Active Users: <span>7/12</span></p>
+            <p>Engagement: <span>75% daily avg.</span></p>
           </div>
         </aside>
 
         <main className="hud-main">
-          <div className="colony-plan-display">
-            <img src={ColonyPlanImage} alt="Colony Plan" className="colony-plan-image" />
-            <h2>COLONY OVERVIEW</h2>
+          <div className="main-viz-container">
+            <h2 className="freeroom-viz-title">CREW MORALE INDEX</h2>
           </div>
+          <p className="freeroom-status">CURRENT MORALE: <span className="status-ok">HIGH</span></p>
+          <button className="main-action-button" onClick={() => navigate('/social-hub')}>Enter Social Hub</button>
         </main>
+
         <aside className="hud-right-panel">
           <div className="panel terminal">
-            <h3>SYSTEM LOGS</h3>
+            <h3>ACTIVITY LOGS</h3>
             <div className="log-entries">
-              {systemLogs.map((log, index) => (
+              {roomLogs.map((log, index) => (
                 <p key={index} className="log-entry">{log}</p>
               ))}
             </div>
@@ -173,4 +125,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default FreeRoom;
