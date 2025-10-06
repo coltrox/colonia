@@ -13,7 +13,8 @@
   <a href="#-key-features">Features</a> •
   <a href="#-tech-stack">Tech Stack</a> •
   <a href="#-project-structure">Structure</a> •
-  <a href="https://coltrox.github.io/colonia">Live Demo</a>
+  <a href="https://coltrox.github.io/colonia">Live Demo</a> 
+  login: admin password: 1234
 
 </div>
 
